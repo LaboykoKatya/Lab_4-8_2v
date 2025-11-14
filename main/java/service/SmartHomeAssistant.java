@@ -7,7 +7,6 @@ import java.util.List;
 
 public class SmartHomeAssistant {
 
-
     public void analyze(List<Appliance> onAppliances) {
         if (onAppliances == null || onAppliances.isEmpty()) {
             System.out.println("Немає увімкнених приладів для аналізу.");
@@ -23,19 +22,19 @@ public class SmartHomeAssistant {
             double cost = a.calculateEnergyCost();
             totalPower += a.getPower();
 
-            System.out.printf("""
-                    Прилад: %s
-                    • Унікальна інформація: %s
-                    • Потужність: %.0f Вт
-                    • Енергоспоживання (умовне): %.2f
-                    • Вартість: %.2f грн
-                    ------------------------------------
-                    """,
+            System.out.printf(
+                    "Прилад: %s\n" +
+                            "• Унікальна інформація: %s\n" +
+                            "• Потужність: %.0f Вт\n" +
+                            "• Енергоспоживання (умовне): %.2f\n" +
+                            "• Вартість: %.2f грн\n" +
+                            "------------------------------------\n",
                     a.getName(),
                     a.getUniqueInfo(),
                     a.getPower(),
                     consumption,
-                    cost);
+                    cost
+            );
         }
 
         System.out.printf("Загальна потужність увімкнених приладів: %.2f Вт%n", totalPower);
@@ -46,17 +45,18 @@ public class SmartHomeAssistant {
                 .orElse(null);
 
         if (totalPower > 1000) {
-            System.out.println("""
-                     УВАГА!
-                    Загальна потужність перевищує безпечний поріг 1000 Вт.
-                    Рекомендація: вимкніть найбільш енергозатратний прилад:
-                    → """ + worst.getName());
+            System.out.println(
+                    "УВАГА!\n" +
+                            "Загальна потужність перевищує безпечний поріг 1000 Вт.\n" +
+                            "Рекомендація: вимкніть найбільш енергозатратний прилад:\n" +
+                            "→ " + worst.getName()
+            );
         } else {
-            System.out.println("""
-                     Система працює в безпечному режимі.
-                    Рекомендація: періодично вимикайте непотрібні прилади
-                    для економії електроенергії.
-                    """);
+            System.out.println(
+                    "Система працює в безпечному режимі.\n" +
+                            "Рекомендація: періодично вимикайте непотрібні прилади\n" +
+                            "для економії електроенергії.\n"
+            );
         }
     }
 }

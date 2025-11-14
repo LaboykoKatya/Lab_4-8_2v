@@ -36,27 +36,31 @@ public class AddApplianceCommand implements Command {
         }
 
         Appliance a = null;
+
         switch (type) {
-            case 1 -> {
+            case 1: {
                 System.out.print("Об'єм (л): ");
                 double vol = Double.parseDouble(scanner.nextLine().trim());
                 a = new KitchenAppliance(name, power, vol);
+                break;
             }
-            case 2 -> {
+            case 2: {
                 System.out.print("Площа (м²): ");
                 double area = Double.parseDouble(scanner.nextLine().trim());
                 a = new CleaningAppliance(name, power, area);
+                break;
             }
-            case 3 -> {
+            case 3: {
                 System.out.print("Розмір екрана (дюйми): ");
                 double screen = Double.parseDouble(scanner.nextLine().trim());
                 a = new EntertainmentAppliance(name, power, screen);
+                break;
             }
-            default -> {
+            default:
                 System.out.println("Невідомий тип приладу.");
                 return;
-            }
         }
+
         apartment.addAppliance(a);
         System.out.println("Прилад додано: " + a.getName());
     }
