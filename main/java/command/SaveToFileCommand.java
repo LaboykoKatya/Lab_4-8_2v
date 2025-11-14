@@ -1,11 +1,11 @@
 package command;
 
-import model.Apartment;
 import service.FileManager;
+import model.Apartment;
 
 public class SaveToFileCommand implements Command {
-    private Apartment apartment;
-    private FileManager fileManager;
+    private final Apartment apartment;
+    private final FileManager fileManager;
 
     public SaveToFileCommand(Apartment apartment, FileManager fileManager) {
         this.apartment = apartment;
@@ -13,5 +13,7 @@ public class SaveToFileCommand implements Command {
     }
 
     @Override
-    public void execute() {}
+    public void execute() {
+        fileManager.save(apartment.getAppliances());
+    }
 }
